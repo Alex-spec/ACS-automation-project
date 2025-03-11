@@ -1,0 +1,5 @@
+# Игнорируем кеш Python
+__pycache__/
+*.pyc
+*.pyo
+
