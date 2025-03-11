@@ -38,6 +38,11 @@ class CheckoutPage(Base):
     left_checkout_total_price = "//span[@class='text-[#FF640D]']"
     right_checkout_total_price = "//*/div/div/div[1]/main/div[2]/div[2]/div/div/div[2]/div/div[6]/div/div[1]/p[2]"
     button_next_to_payment = "//span[contains(text(), ' Next to Payment ')]"
+    check_pro_17_product = "(//p[@class='text-lg lg:text-xl font-semibold'])[1]"
+    check_emotion_product = "(//p[@class='text-lg lg:text-xl font-semibold'])[2]"
+    check_broadcast_product = "(//p[@class='text-lg lg:text-xl font-semibold'])[3]"
+    check_silica_gel_product = "(//p[@class='text-lg lg:text-xl font-semibold'])[4]"
+    check_total_block_product = "(//p[@class='text-lg lg:text-xl font-semibold'])[5]"
 
     # GETTERS
     def get_cart_total_price(self):
@@ -63,6 +68,26 @@ class CheckoutPage(Base):
         return WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable((By.XPATH, self.button_next_to_payment)))
 
+    def get_check_pro_17_product(self):
+        return WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_pro_17_product)))
+
+    def get_check_emotion_product(self):
+        return WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_emotion_product)))
+
+    def get_check_broadcast_product(self):
+        return WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_broadcast_product)))
+
+    def get_check_silica_gel_product(self):
+        return WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_silica_gel_product)))
+
+    def get_check_total_block_product(self):
+        return WebDriverWait(self.driver, 30).until(
+            EC.element_to_be_clickable((By.XPATH, self.check_total_block_product)))
+
     # ACTIONS
     def assertion_prices_product_and_checkout_pages(self, get_total_price, get_cart_total_price):
         # Проверка, что цены совпадают
@@ -79,6 +104,15 @@ class CheckoutPage(Base):
     def click_get_button_next_to_payment(self):
         self.get_button_next_to_payment().click()
         print("Кликаем по кнопке next to payment")
+
+    """Проверка названий для теста test_buying_several_products"""
+
+    def assert_checkout_page_product_names(self):
+        self.assert_word_sign_in(self.get_check_pro_17_product(),'PRO17 Custom Earplugs' )
+        self.assert_word_sign_in(self.get_check_emotion_product(), 'Emotion')
+        self.assert_word_sign_in(self.get_check_broadcast_product(), 'Broadcast Mould')
+        self.assert_word_sign_in(self.get_check_silica_gel_product(), 'Silica Gel Packets')
+        self.assert_word_sign_in(self.get_check_total_block_product(), 'Total Block')
 
     # METHODS
     def checkout_page_actions(self):

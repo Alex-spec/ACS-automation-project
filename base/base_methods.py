@@ -19,4 +19,4 @@ class Base:
         """Проверка значения текста"""
         value_word = word.text
         assert value_word == result
-        print("Вход выполнен успешно")
+        print(f"Текст {value_word} совпадает с {result}")
