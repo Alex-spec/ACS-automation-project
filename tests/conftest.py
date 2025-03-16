@@ -18,4 +18,5 @@ def driver():
 
     # Закрытие браузера после теста
     print("End test")
+    driver.quit()
 
