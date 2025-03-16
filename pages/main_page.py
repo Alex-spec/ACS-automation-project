@@ -79,4 +79,15 @@ class MainPage(Base):
         self.click_button_sign_in()
         self.assert_word_sign_in(self.get_profile_name(), "Alex QA")
 
+    def authorization_second(self):
+        """ Авторизация в системе"""
+        self.driver.get(self.url) # открытие требуемой url
+        self.driver.maximize_window()
+        self.click_login_icon()
+        self.click_login_button()
+        self.input_password_form("qweQwe123#")
+        self.input_email_form("alexqamiroshkin@gmail.com")
+        self.click_button_sign_in()
+        self.assert_word_sign_in(self.get_profile_name(), "Alex Yankovsky")
+
 

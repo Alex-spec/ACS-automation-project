@@ -6,13 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 
-def test_smoke_test_acs():
-    # Настройки браузера
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-
-    # Запуск WebDriver
-    driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+def test_smoke_test_acs(driver):
     print("Start Test")
 
     # Создание объекта страницы и запуск авторизации
@@ -36,20 +30,13 @@ def test_smoke_test_acs():
     # Сравниваем цены с обеих страниц
     cp.assertion_prices_product_and_checkout_pages(total_price_product_page, total_price_checkout_page)
     cp.checkout_page_actions()
-    driver.quit()
 
-def test_buying_several_products():
-    # Настройки браузера
-    options = webdriver.ChromeOptions()
-    options.add_experimental_option("detach", True)
-
-    # Запуск WebDriver
-    driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+def test_buying_several_products(driver):
     print("Start Test")
 
     # Создание объекта страницы и запуск авторизации
     lp = MainPage(driver)
-    lp.authorization()
+    lp.authorization_second()
     lp.click_products_button()
 
     pp = ProductPage(driver)
